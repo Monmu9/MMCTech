@@ -73,4 +73,4 @@ Montse Muñoz Clarà
 
 ## 📅 Fecha
 
-Enero 2025
+Noviembre 2025
