@@ -9,7 +9,7 @@ Sistema de catálogo de productos con **carga dinámica mediante AJAX**.
 
 ## 🌐 Ver Proyecto en Vivo
 
-👉 **[Ver Demo en GitHub Pages](https://Monmu9.github.io/mmctech/)**
+👉 **[Ver Demo en GitHub Pages](https://monmu9.github.io/MMCTech/)**
 
 ---
 
