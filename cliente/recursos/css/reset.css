@@ -1,0 +1,139 @@
+
+
+
+/* ========================================
+   RESET CSS - Normalización
+   ======================================== */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* HTML y Body */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    line-height: 1.6;
+    font-family: var(--fuente-principal);
+    color: var(--color-texto-principal);
+    background-color: var(--color-fondo);
+}
+
+/* Tipografía */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+    font-family: var(--fuente-titulos);
+    font-weight: var(--peso-bold);
+    line-height: 1.2;
+}
+
+p {
+    margin: 0;
+}
+
+/* Listas */
+ul,
+ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Enlaces */
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transicion-rapida);
+}
+
+a:hover {
+    color: var(--color-primario);
+}
+
+/* Imágenes */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Botones */
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* Inputs */
+input,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+    border: none;
+    outline: none;
+}
+
+/* Tablas */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Scrollbar personalizado (Webkit) */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-fondo-secundario);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primario);
+    border-radius: var(--radio-md);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primario-hover);
+}
+
+/* Selección de texto */
+::selection {
+    background-color: var(--color-primario);
+    color: var(--color-fondo);
+}
+
+::-moz-selection {
+    background-color: var(--color-primario);
+    color: var(--color-fondo);
+}

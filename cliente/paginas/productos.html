@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo de productos gaming de MMCtech - Periféricos de alta calidad">
+    <title>Productos - MMCtech | Tienda Gaming</title>
+    
+
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="../recursos/css/variables.css">
+    <link rel="stylesheet" href="../recursos/css/reset.css">
+    <link rel="stylesheet" href="../recursos/css/layout.css">
+    <link rel="stylesheet" href="../recursos/css/componentes.css">
+    
+
+    <!-- Iconos (de momento uso emoji, igual en el futuro le agrego Font Awesome después) -->
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- ========================================
+             HEADER
+             ======================================== -->
+        <header class="header">
+            <div class="container header-container">
+                <!-- Logo -->
+                <a href="../index.html" class="logo">
+                    <span class="logo-icon">🎮</span>
+                    <span>MMCtech</span>
+                </a>
+                
+                <!-- Navegación -->
+                <nav class="nav-principal">
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="../index.html" class="nav-link">Inicio</a></li>
+                        <li><a href="productos.html" class="nav-link active">Productos</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Acciones del header -->
+                <div class="header-acciones">
+                    <!-- Carrito -->
+                    <a href="carrito.html" class="header-icono" title="Carrito">
+                        <span>🛒</span>
+                        <span class="badge" id="carritoContador">0</span>
+                    </a>
+                    
+                    <!-- Usuario -->
+                    <a href="auth/login.html" class="header-icono" title="Mi cuenta">
+                        <span>👤</span>
+                    </a>
+                    
+                    <!-- Menú móvil -->
+                    <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+
+
+
+        <!-- ========================================
+             CONTENIDO PRINCIPAL
+             ======================================== -->
+        <main class="main-content">
+            
+            <!-- Sección de productos -->
+            <section class="seccion">
+                <div class="container">
+                    
+                    <!-- Header de la sección -->
+                    <div class="seccion-header">
+                        <h1 class="seccion-titulo">Catálogo de Productos</h1>
+                        <p class="seccion-subtitulo">
+                            Descubre nuestra selección de periféricos gaming de alta calidad
+                        </p>
+                    </div>
+                    
+                    <!-- Filtros -->
+                    <div class="filtros-container mb-4">
+                        <div class="filtros">
+                            <button class="btn btn-outline filtro-btn active" data-categoria="todos">
+                                Todos
+                            </button>
+                            <button class="btn btn-outline filtro-btn" data-categoria="Ratones">
+                                🖱️ Ratones
+                            </button>
+                            <button class="btn btn-outline filtro-btn" data-categoria="Teclados">
+                                ⌨️ Teclados
+                            </button>
+                            <button class="btn btn-outline filtro-btn" data-categoria="Auriculares">
+                                🎧 Auriculares
+                            </button>
+                            <button class="btn btn-outline filtro-btn" data-categoria="Monitores">
+                                🖥️ Monitores
+                            </button>
+                        </div>
+                    </div>
+                    
+
+                    <!-- Contador de productos -->
+                    <div class="productos-info mb-3">
+                        <p id="productosInfo" style="color: var(--color-texto-secundario);">
+                            Mostrando <span id="productosActuales">0</span> de <span id="productosTotal">0</span> productos
+                        </p>
+                    </div>
+                    
+
+                    <!-- Grid de productos -->
+                    <div class="productos-grid" id="productosGrid">
+                        <!-- Los productos se cargarán dinámicamente aquí -->
+                    </div>
+                    
+
+                    <!-- Mensaje de carga -->
+                    <div id="loadingProductos" class="text-center oculto" style="padding: var(--espacio-2xl);">
+                        <div class="spinner" style="width: 40px; height: 40px; border-width: 4px; margin: 0 auto;"></div>
+                        <p style="color: var(--color-texto-secundario); margin-top: var(--espacio-md);">
+                            Cargando productos...
+                        </p>
+                    </div>
+                    
+
+                    <!-- Mensaje cuando no hay más productos -->
+                    <div id="noMasProductos" class="text-center oculto" style="padding: var(--espacio-xl);">
+                        <p style="color: var(--color-texto-secundario); font-size: var(--texto-lg);">
+                            ✅ Has visto todos los productos disponibles
+                        </p>
+                    </div>
+                    
+
+                    <!-- Botón "Cargar más" -->
+                    <div class="text-center mt-4">
+                        <button id="btnCargarMas" class="btn btn-primario btn-lg">
+                            <span>📦</span>
+                            <span>Cargar Más Productos</span>
+                        </button>
+                    </div>
+                    
+                </div>
+            </section>
+            
+        </main>
+        
+
+
+        <!-- ========================================
+             FOOTER
+             ======================================== -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-container">
+                    
+                    <!-- Acerca de -->
+                    <div class="footer-seccion">
+                        <h3>Sobre MMCtech</h3>
+                        <p style="color: var(--color-texto-secundario); margin-top: var(--espacio-md);">
+                            Tu tienda de confianza para periféricos gaming de alta calidad. 
+                            Ofrecemos los mejores productos para llevar tu experiencia gaming al siguiente nivel.
+                        </p>
+                    </div>
+                    
+
+                    <!-- Enlaces rápidos -->
+                    <div class="footer-seccion">
+                        <h3>Enlaces Rápidos</h3>
+                        <ul class="footer-links">
+                            <li><a href="../index.html" class="footer-link">Inicio</a></li>
+                            <li><a href="productos.html" class="footer-link">Productos</a></li>
+                            <li><a href="#" class="footer-link">Ofertas</a></li>
+                            <li><a href="#" class="footer-link">Blog</a></li>
+                            <li><a href="#" class="footer-link">Contacto</a></li>
+                        </ul>
+                    </div>
+
+                    
+                    <!-- Categorías -->
+                    <div class="footer-seccion">
+                        <h3>Categorías</h3>
+                        <ul class="footer-links">
+                            <li><a href="#" class="footer-link">Ratones Gaming</a></li>
+                            <li><a href="#" class="footer-link">Teclados Mecánicos</a></li>
+                            <li><a href="#" class="footer-link">Auriculares</a></li>
+                            <li><a href="#" class="footer-link">Monitores</a></li>
+                            <li><a href="#" class="footer-link">Accesorios</a></li>
+                        </ul>
+                    </div>
+                    
+
+                    <!-- Contacto -->
+                    <div class="footer-seccion">
+                        <h3>Contacto</h3>
+                        <ul class="footer-links">
+                            <li style="color: var(--color-texto-secundario);">📧 info@mmctech.com</li>
+                            <li style="color: var(--color-texto-secundario);">📞 +34 900 123 456</li>
+                            <li style="color: var(--color-texto-secundario);">📍 En un lugar de La Mancha, España</li>
+                        </ul>
+                    </div>
+                    
+                </div>
+                
+                
+                <!-- Copyright -->
+                <div class="footer-bottom">
+                    <p>&copy; 2025 MMCtech. Todos los derechos reservados. | 
+                       Proyecto educativo - 2º DAW - Entorno Cliente</p>
+                </div>
+            </div>
+        </footer>
+        
+    </div>
+    
+
+
+    
+    <!-- ========================================
+         SCRIPTS
+         ======================================== -->
+    <!-- Configuración -->
+    <script src="../recursos/js/config.js"></script>
+    
+    <!-- Funciones de API -->
+    <script src="../recursos/js/api.js"></script>
+    
+    <!-- Lógica de productos - CÓDIGO CLAVE DEL EJERCICIO -->
+    <script src="../recursos/js/productos.js"></script>
+    
+    <!-- Script para el menú móvil -->
+    <script>
+        // Toggle menú móvil
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('activo');
+        });
+    </script>
+</body>
+</html>
