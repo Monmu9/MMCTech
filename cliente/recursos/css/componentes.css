@@ -324,35 +324,86 @@
    ALERTAS Y MENSAJES
    ======================================== */
 
+
 .alerta {
-    padding: var(--espacio-md) var(--espacio-lg);
+    padding: var(--espacio-md);
     border-radius: var(--radio-md);
-    margin-bottom: var(--espacio-lg);
+    margin-bottom: var(--espacio-md);
     border-left: 4px solid;
+    background: var(--color-fondo-card);
+    box-shadow: var(--sombra-md);
+    animation: slideInRight 0.3s ease-out;
 }
 
 .alerta-exito {
-    background-color: rgba(16, 185, 129, 0.1);
     border-color: var(--color-exito);
-    color: var(--color-exito);
+    background: rgba(16, 185, 129, 0.1);
 }
 
 .alerta-error {
-    background-color: rgba(239, 68, 68, 0.1);
     border-color: var(--color-error);
-    color: var(--color-error);
+    background: rgba(239, 68, 68, 0.1);
 }
 
 .alerta-info {
-    background-color: rgba(59, 130, 246, 0.1);
     border-color: var(--color-info);
-    color: var(--color-info);
+    background: rgba(59, 130, 246, 0.1);
 }
 
 .alerta-advertencia {
-    background-color: rgba(245, 158, 11, 0.1);
     border-color: var(--color-advertencia);
-    color: var(--color-advertencia);
+    background: rgba(245, 158, 11, 0.1);
+}
+
+/* Animación de entrada */
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive para alertas en móvil */
+@media (max-width: 768px) {
+    .alerta {
+        position: fixed !important;
+        top: 80px !important;
+        /* Debajo del header */
+        left: 10px !important;
+        right: 10px !important;
+        width: auto !important;
+        min-width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        z-index: 9999 !important;
+        font-size: var(--texto-sm);
+        padding: var(--espacio-sm) var(--espacio-md);
+    }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .alerta {
+        top: 70px !important;
+        left: 8px !important;
+        right: 8px !important;
+        padding: var(--espacio-sm);
+        font-size: 13px;
+    }
+
+    .alerta strong {
+        font-size: 14px;
+    }
+
+    .alerta p {
+        font-size: 12px;
+        line-height: 1.4;
+    }
 }
 
 

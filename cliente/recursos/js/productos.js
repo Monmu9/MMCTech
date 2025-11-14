@@ -481,22 +481,24 @@ function mostrarFuncionNoDisponible(nombreFuncion) {
     // Crear alerta
     const alerta = document.createElement('div');
     alerta.className = 'alerta alerta-info';
+    
+    // Estilos base (se complementan con el CSS)
     alerta.style.position = 'fixed';
     alerta.style.top = '100px';
     alerta.style.right = '20px';
-    alerta.style.zIndex = '1000';
-    alerta.style.minWidth = '350px';
+    alerta.style.zIndex = '9999';
+    alerta.style.minWidth = '320px';
     alerta.style.maxWidth = '400px';
     alerta.style.boxShadow = 'var(--sombra-xl)';
     
     alerta.innerHTML = `
         <div style="display: flex; align-items: start; gap: 12px;">
-            <span style="font-size: 24px;">ℹ️</span>
-            <div>
-                <strong style="display: block; margin-bottom: 8px;">Función no disponible</strong>
-                <p style="margin: 0; font-size: 14px;">
+            <span style="font-size: 24px; flex-shrink: 0;">ℹ️</span>
+            <div style="flex: 1; min-width: 0;">
+                <strong style="display: block; margin-bottom: 8px; font-size: 15px;">Función no disponible</strong>
+                <p style="margin: 0; font-size: 14px; line-height: 1.5;">
                     "${nombreFuncion}" no está disponible en este prototipo.<br>
-                    <small style="opacity: 0.8;">Esta es una demostración de carga dinámica con AJAX.</small>
+                    <small style="opacity: 0.8; font-size: 12px;">Esta es una demostración de carga dinámica con AJAX.</small>
                 </p>
             </div>
         </div>
@@ -506,6 +508,7 @@ function mostrarFuncionNoDisponible(nombreFuncion) {
     
     // Auto-remover después de 4 segundos
     setTimeout(() => {
+        alerta.style.transition = 'all 0.3s ease-out';
         alerta.style.opacity = '0';
         alerta.style.transform = 'translateX(400px)';
         setTimeout(() => alerta.remove(), 300);
@@ -514,7 +517,6 @@ function mostrarFuncionNoDisponible(nombreFuncion) {
 
 // Exponer función globalmente
 window.mostrarFuncionNoDisponible = mostrarFuncionNoDisponible;
-
 
 
 
