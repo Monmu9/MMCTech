@@ -84,6 +84,30 @@
     font-size: var(--texto-2xl);
 }
 
+/* Logo con imagen */
+.logo-imagen {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    /* Mantiene proporciones */
+    border-radius: var(--radio-sm);
+    /* Esquinas ligeramente redondeadas */
+}
+
+/* Hover en el logo */
+.logo:hover .logo-imagen {
+    transform: scale(1.05);
+    transition: transform var(--transicion-normal);
+}
+
+/* Responsive - Logo más pequeño en móvil */
+@media (max-width: 480px) {
+    .logo-imagen {
+        width: 32px;
+        height: 32px;
+    }
+}
+
 
 /* Navegación principal */
 .nav-principal {
