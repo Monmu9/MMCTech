@@ -8,7 +8,7 @@
     "stock": 25,
     "categoria": "Ratones",
     "marca": "Logitech",
-    "url_imagen": "https://placehold.co/500x500/1a2142/00d9ff?text=Logitech+G502",
+    "url_imagen": "../recursos/imagenes/productos/raton-logitech-g502.jpg",
     "activo": true
   },
   {
@@ -19,7 +19,7 @@
     "stock": 18,
     "categoria": "Ratones",
     "marca": "Razer",
-    "url_imagen": "https://placehold.co/500x500/1a2142/7b2cbf?text=Razer+DeathAdder",
+    "url_imagen": "../recursos/imagenes/productos/raton-razer-deathadder.jpg",
     "activo": true
   },
   {
@@ -30,7 +30,7 @@
     "stock": 12,
     "categoria": "Teclados",
     "marca": "Corsair",
-    "url_imagen": "https://placehold.co/500x500/1a2142/00d9ff?text=Corsair+K70",
+    "url_imagen": "../recursos/imagenes/productos/teclado-corsair-k70.jpg",
     "activo": true
   },
   {
@@ -41,7 +41,7 @@
     "stock": 30,
     "categoria": "Auriculares",
     "marca": "HyperX",
-    "url_imagen": "https://placehold.co/500x500/1a2142/00d9ff?text=HyperX+Cloud",
+    "url_imagen": "../recursos/imagenes/productos/auriculares-hyperx-cloud.jpg",
     "activo": true
   },
   {
@@ -52,7 +52,7 @@
     "stock": 8,
     "categoria": "Monitores",
     "marca": "ASUS",
-    "url_imagen": "https://placehold.co/500x500/1a2142/7b2cbf?text=ASUS+VG27AQ",
+    "url_imagen": "../recursos/imagenes/productos/monitor-asus-vg27aq.jpg",
     "activo": true
   },
   {
@@ -63,7 +63,7 @@
     "stock": 22,
     "categoria": "Ratones",
     "marca": "SteelSeries",
-    "url_imagen": "https://placehold.co/500x500/1a2142/00d9ff?text=SteelSeries+Rival",
+    "url_imagen": "../recursos/imagenes/productos/raton-steelseries-rival.jpg",
     "activo": true
   },
   {
@@ -74,7 +74,7 @@
     "stock": 15,
     "categoria": "Teclados",
     "marca": "Logitech",
-    "url_imagen": "https://placehold.co/500x500/1a2142/00d9ff?text=Logitech+Pro+X",
+    "url_imagen": "../recursos/imagenes/productos/teclado-logitech-prox.jpg",
     "activo": true
   },
   {
@@ -85,7 +85,7 @@
     "stock": 20,
     "categoria": "Auriculares",
     "marca": "Razer",
-    "url_imagen": "https://placehold.co/500x500/1a2142/7b2cbf?text=Razer+BlackShark",
+    "url_imagen": "../recursos/imagenes/productos/auriculares-razer-blackshark.jpg",
     "activo": true
   },
   {
@@ -96,7 +96,7 @@
     "stock": 5,
     "categoria": "Monitores",
     "marca": "BenQ",
-    "url_imagen": "https://placehold.co/500x500/1a2142/00d9ff?text=BenQ+ZOWIE",
+    "url_imagen": "../recursos/imagenes/productos/monitor-benq-zowie.jpg",
     "activo": true
   },
   {
@@ -107,7 +107,7 @@
     "stock": 14,
     "categoria": "Ratones",
     "marca": "Corsair",
-    "url_imagen": "https://placehold.co/500x500/1a2142/00d9ff?text=Corsair+Dark+Core",
+    "url_imagen": "../recursos/imagenes/productos/raton-corsair-darkcore.jpg",
     "activo": true
   },
   {
@@ -118,7 +118,7 @@
     "stock": 10,
     "categoria": "Teclados",
     "marca": "Ducky",
-    "url_imagen": "https://placehold.co/500x500/1a2142/7b2cbf?text=Ducky+One+3",
+    "url_imagen": "../recursos/imagenes/productos/teclado-ducky-one3.jpg",
     "activo": true
   },
   {
@@ -129,7 +129,7 @@
     "stock": 16,
     "categoria": "Auriculares",
     "marca": "SteelSeries",
-    "url_imagen": "https://placehold.co/500x500/1a2142/00d9ff?text=Arctis+7",
+    "url_imagen": "../recursos/imagenes/productos/auriculares-steelseries-arctis.jpg",
     "activo": true
   },
   {
@@ -140,7 +140,7 @@
     "stock": 7,
     "categoria": "Monitores",
     "marca": "LG",
-    "url_imagen": "https://placehold.co/500x500/1a2142/7b2cbf?text=LG+UltraGear",
+    "url_imagen": "../recursos/imagenes/productos/monitor-lg-ultragear.jpg",
     "activo": true
   },
   {
@@ -151,7 +151,7 @@
     "stock": 28,
     "categoria": "Ratones",
     "marca": "Logitech",
-    "url_imagen": "https://placehold.co/500x500/1a2142/00d9ff?text=Logitech+G305",
+    "url_imagen": "../recursos/imagenes/productos/raton-logitech-g305.jpg",
     "activo": true
   },
   {
@@ -162,7 +162,7 @@
     "stock": 11,
     "categoria": "Teclados",
     "marca": "Razer",
-    "url_imagen": "https://placehold.co/500x500/1a2142/7b2cbf?text=Huntsman+Mini",
+    "url_imagen": "../recursos/imagenes/productos/teclado-razer-huntsman.jpg",
     "activo": true
   },
   {
@@ -173,7 +173,7 @@
     "stock": 13,
     "categoria": "Auriculares",
     "marca": "Corsair",
-    "url_imagen": "https://placehold.co/500x500/1a2142/00d9ff?text=Corsair+HS80",
+    "url_imagen": "../recursos/imagenes/productos/auriculares-corsair-hs80.jpg",
     "activo": true
   },
   {
@@ -184,7 +184,7 @@
     "stock": 4,
     "categoria": "Monitores",
     "marca": "Samsung",
-    "url_imagen": "https://placehold.co/500x500/1a2142/00d9ff?text=Samsung+Odyssey",
+    "url_imagen": "../recursos/imagenes/productos/monitor-samsung-odyssey.jpg",
     "activo": true
   },
   {
@@ -195,7 +195,7 @@
     "stock": 19,
     "categoria": "Ratones",
     "marca": "Glorious",
-    "url_imagen": "https://placehold.co/500x500/1a2142/7b2cbf?text=Model+O",
+    "url_imagen": "../recursos/imagenes/productos/raton-glorious-modelo.jpg",
     "activo": true
   },
   {
@@ -206,7 +206,7 @@
     "stock": 17,
     "categoria": "Teclados",
     "marca": "Keychron",
-    "url_imagen": "https://placehold.co/500x500/1a2142/00d9ff?text=Keychron+K8",
+    "url_imagen": "../recursos/imagenes/productos/teclado-keychron-k8.jpg",
     "activo": true
   },
   {
@@ -217,7 +217,7 @@
     "stock": 9,
     "categoria": "Auriculares",
     "marca": "Audio-Technica",
-    "url_imagen": "https://placehold.co/500x500/1a2142/7b2cbf?text=ATH-G1",
+    "url_imagen": "../recursos/imagenes/productos/auriculares-audiotechnica-athg1.jpg",
     "activo": true
   }
 ]

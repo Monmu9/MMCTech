@@ -86,53 +86,69 @@ Google Chrome       -->DevTools  Depuración y testing
 
 
 ## 4. Estructura del Proyecto
-
+```
 MMCTECH/
+├── index.html                          # Página principal del proyecto
+├── memoria.md                          # Esta documentación
+├── README.md                           # Instrucciones y presentación
+│
 └── cliente/
-    ├── index.html                      # Página principal
-    ├── memoria.md                      # Esta documentación
-    │
     ├── paginas/
-    │   └── productos.html             # Catálogo con funcionalidad AJAX
+    │   └── productos.html             # Catálogo con funcionalidad AJAX ⭐
     │
     └── recursos/
         ├── css/
-        │   ├── variables.css          # Variables globales (colores, tipografías)
+        │   ├── variables.css          # Variables globales (colores, tipografías, espaciados)
         │   ├── reset.css              # Normalización de estilos
         │   ├── layout.css             # Estructura general (header, footer, grid)
-        │   ├── componentes.css        # Componentes reutilizables (botones, cards)
+        │   ├── componentes.css        # Componentes reutilizables (botones, cards, alertas)
         │   └── styles.css             # Estilos específicos de index.html
         │
         ├── js/
-        │   ├── config.js              # Configuración global (URL API, constantes)
+        │   ├── config.js              # Configuración global (constantes, URLs)
         │   ├── api.js                 # Funciones para peticiones AJAX
-        │   └── productos.js           # Lógica principal del catálogo 
+        │   └── productos.js           # Lógica principal del catálogo ⭐
+        │
+        ├── imagenes/
+        │   └── productos/             # 20 imágenes reales de productos gaming
+        │       ├── raton-logitech-g502.jpg
+        │       ├── raton-razer-deathadder.jpg
+        │       ├── teclado-corsair-k70.jpg
+        │       ├── auriculares-hyperx-cloud.jpg
+        │       ├── monitor-asus-vg27aq.jpg
+        │       └── ... (15 imágenes más)
         │
         └── datos/
-            └── productos-simulados.json  # Datos de productos en JSON
-
-
+            └── productos-simulados.json  # 20 productos con datos completos
+```
 
 ### Descripción de Archivos Principales
 
 #### HTML
-- **`index.html`**: Página de inicio con presentación del proyecto
-- **`productos.html`**: Página principal con el catálogo y funcionalidad de carga dinámica
+- **`index.html`**: Página de inicio con presentación del proyecto y enlaces a la funcionalidad principal
+- **`productos.html`**: Página del catálogo con la funcionalidad de carga dinámica mediante AJAX
 
-#### CSS
-- **`variables.css`**: Define colores, tipografías, espaciados y otras variables reutilizables
-- **`reset.css`**: Normaliza estilos entre diferentes navegadores
+#### CSS (Arquitectura Modular)
+- **`variables.css`**: Define todas las variables CSS reutilizables (colores, tipografías, espaciados, sombras, etc.)
+- **`reset.css`**: Normaliza estilos entre diferentes navegadores para consistencia visual
 - **`layout.css`**: Define la estructura general (header, footer, grids, contenedores)
-- **`componentes.css`**: Estilos de componentes reutilizables (botones, cards, formularios, alertas)
+- **`componentes.css`**: Estilos de componentes reutilizables (botones, cards, formularios, alertas, spinners)
 - **`styles.css`**: Estilos específicos para la página de inicio
 
-#### JavaScript
-- **`config.js`**: Configuración global (número de productos por página, mensajes, etc.)
-- **`api.js`**: Funciones para hacer peticiones AJAX (actualmente a JSON local)
-- **`productos.js`**: Lógica completa del catálogo (carga, renderizado, filtros, paginación) ⭐
+#### JavaScript (Arquitectura Modular)
+- **`config.js`**: Configuración global (número de productos por página, mensajes, constantes)
+- **`api.js`**: Funciones para hacer peticiones AJAX (fetch, manejo de errores)
+- **`productos.js`**: Lógica completa del catálogo (carga, renderizado, filtros, paginación, alertas) ⭐
+
+#### Recursos Visuales
+- **`imagenes/productos/`**: 20 imágenes reales de productos gaming en formato JPG/PNG
+  - 6 ratones gaming
+  - 5 teclados mecánicos
+  - 5 auriculares gaming
+  - 4 monitores gaming
 
 #### Datos
-- **`productos-simulados.json`**: 20 productos de ejemplo en formato JSON
+- **`productos-simulados.json`**: Base de datos simulada con 20 productos completos (incluye nombre, descripción, precio, stock, categoría, marca, URL de imagen)
 
 
 ------------------------------------------------------------------------------------------------------------------------------
@@ -150,6 +166,7 @@ El flujo es el siguiente:
 3. **Actualización del DOM**: Los nuevos productos se agregan al grid existente con animación
 4. **Feedback visual**: Durante la carga, el botón muestra un spinner y se deshabilita
 5. **Finalización**: Cuando no hay más productos, se muestra un mensaje y se oculta el botón
+
 
 ### 5.2 Código JavaScript Destacado
 
@@ -244,6 +261,59 @@ function renderizarProductos(productos) {
     });
 }
 ```
+
+#### Gestión de Imágenes con Fallback
+```javascript
+/**
+ * Las imágenes incluyen un fallback automático
+ * Si la imagen no carga, se muestra un gradiente con el nombre de la marca
+ */
+<img src="${producto.url_imagen}" 
+     alt="${producto.nombre}"
+     onerror="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'; 
+              this.style.display='flex'; 
+              this.style.alignItems='center'; 
+              this.style.justifyContent='center'; 
+              this.style.color='white'; 
+              this.innerHTML='${producto.marca}';"
+     loading="lazy">
+```
+
+**Beneficios:**
+- Si falla la carga de una imagen, se muestra un gradiente elegante
+- El atributo `loading="lazy"` mejora el rendimiento (carga diferida)
+- Siempre hay contenido visual, nunca un icono roto
+
+---
+
+#### Alertas para Funciones No Disponibles
+```javascript
+/**
+ * Muestra mensajes informativos cuando se intenta acceder
+ * a funciones no implementadas (Carrito, Mi Cuenta)
+ */
+function mostrarFuncionNoDisponible(nombreFuncion) {
+    const alerta = document.createElement('div');
+    alerta.className = 'alerta alerta-info';
+    alerta.style.position = 'fixed';
+    alerta.style.top = '100px';
+    alerta.style.right = '20px';
+    alerta.style.zIndex = '1000';
+    
+    alerta.innerHTML = `
+        <strong>Función no disponible</strong>
+        <p>"${nombreFuncion}" no está disponible en este prototipo.</p>
+    `;
+    
+    document.body.appendChild(alerta);
+    
+    // Auto-remover después de 4 segundos
+    setTimeout(() => alerta.remove(), 4000);
+}
+```
+
+**Beneficio:** El usuario recibe feedback claro cuando intenta usar funcionalidades no implementadas, evitando confusión o errores.
+
 
 ### 5.3 Flujo de Datos
 ```
@@ -560,6 +630,97 @@ Uso correcto de etiquetas HTML5 para mejorar la accesibilidad y el SEO.
 - 📱 Estructura lógica y mantenible
 
 
+
+---
+
+### ✅ Práctica 6: Feedback de Funciones No Disponibles
+
+**Descripción:**  
+En lugar de enlaces rotos o errores, se muestra un mensaje claro cuando el usuario intenta acceder a funcionalidades no implementadas.
+
+**Implementación:**
+
+Funciones no implementadas en el prototipo:
+- **Carrito de compra**: Click en el icono del carrito
+- **Mi cuenta / Login**: Click en el icono de usuario
+
+En lugar de romper la aplicación o mostrar páginas vacías, se muestra una alerta informativa:
+```javascript
+function mostrarFuncionNoDisponible(nombreFuncion) {
+    // Crea una alerta temporal con el mensaje
+    alerta.innerHTML = `
+        <strong>Función no disponible</strong>
+        <p>"${nombreFuncion}" no está disponible en este prototipo.<br>
+        Esta es una demostración de carga dinámica con AJAX.</p>
+    `;
+}
+```
+
+**En el HTML:**
+```html
+<a href="#" onclick="mostrarFuncionNoDisponible('Carrito'); return false;">
+    🛒 Carrito
+</a>
+```
+
+**Beneficios:**
+- ✅ El usuario sabe inmediatamente que la función existe pero no está implementada
+- ✅ Se explica el contexto (es un prototipo educativo)
+- ✅ No hay errores 404 o páginas rotas
+- ✅ Experiencia profesional y transparente
+
+---
+
+### ✅ Práctica 7: Imágenes Reales con Fallback Automático
+
+**Descripción:**  
+Se utilizan imágenes reales de productos, pero con un sistema de respaldo elegante si alguna imagen falla.
+
+**Implementación:**
+
+Todas las imágenes de productos incluyen:
+
+1. **Ruta a imagen real:** `../recursos/imagenes/productos/raton-logitech-g502.jpg`
+
+2. **Fallback automático con `onerror`:**
+```javascript
+onerror="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'; 
+         this.innerHTML='${producto.marca}';"
+```
+
+3. **Lazy loading:**
+```html
+loading="lazy"
+```
+
+**Beneficios:**
+- ✅ Si una imagen no carga, se muestra un gradiente elegante con el nombre de la marca
+- ✅ Nunca se ve el icono de "imagen rota" (❌🖼️)
+- ✅ Las imágenes se cargan solo cuando son visibles (mejor performance)
+- ✅ Experiencia visual consistente
+
+**Ejemplo visual:**
+
+**Con imagen:**
+```
+┌──────────────┐
+│              │
+│   [IMAGEN]   │
+│   PRODUCTO   │
+│              │
+└──────────────┘
+```
+
+**Sin imagen (fallback):**
+```
+┌──────────────┐
+│  ┌────────┐  │
+│  │Logitech│  │  ← Gradiente + marca
+│  └────────┘  │
+└──────────────┘
+```
+
+
 ------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -682,6 +843,11 @@ async function obtenerDatos() {
 - Filtro "Monitores"        --> Muestra solo productos de categoría Monitores
 - Spinner de carga          --> Se muestra durante la carga 
 - Animación fade-in         --> Los productos aparecen con animación suave 
+- Imágenes reales           --> Se cargan correctamente las 20 imágenes 
+- Fallback de imágenes      --> Si una imagen falla, se muestra gradiente + marca 
+- Lazy loading              --> Imágenes se cargan solo cuando son visibles 
+- Alerta "Carrito"          --> Muestra mensaje informativo al hacer click 
+- Alerta "Mi Cuenta"        --> Muestra mensaje informativo al hacer click 
 
 ### 9.2 Pruebas de Usabilidad
 
@@ -774,6 +940,73 @@ Se ajustó la ruta según la ubicación del archivo HTML:
 // JSON está en cliente/recursos/datos/
 const response = await fetch('../recursos/datos/productos-simulados.json');
 ```
+
+
+---
+
+### Problema 4: Gestión de Imágenes de Productos
+
+**Descripción:**  
+Necesidad de mostrar imágenes reales de productos en lugar de placeholders con gradientes CSS.
+
+**Solución:**  
+Se implementó un sistema de imágenes con fallback automático:
+
+1. **Descarga de imágenes:** Se descargaron 20 imágenes reales de productos gaming
+2. **Nomenclatura consistente:** Se renombraron con un patrón claro:
+```
+   raton-logitech-g502.jpg
+   teclado-corsair-k70.jpg
+   auriculares-hyperx-cloud.jpg
+   monitor-asus-vg27aq.jpg
+```
+
+3. **Estructura organizada:**
+```
+   cliente/recursos/imagenes/productos/
+```
+
+4. **Fallback automático:** Se agregó el atributo `onerror` para mostrar un gradiente si la imagen falla:
+```javascript
+   onerror="this.style.background='linear-gradient(...)'; this.innerHTML='Marca';"
+```
+
+5. **Optimización:** Se agregó `loading="lazy"` para carga diferida
+
+---
+
+### Problema 5: Enlaces a Funciones No Implementadas
+
+**Descripción:**  
+Los iconos de "Carrito" y "Mi Cuenta" en el header apuntaban a páginas que no existen, causando errores 404.
+
+**Solución:**  
+Se implementó un sistema de alertas informativas:
+
+1. **Cambio de enlaces:**
+```html
+   <!-- Antes (error 404) -->
+   <a href="carrito.html">🛒</a>
+   
+   <!-- Después (mensaje informativo) -->
+   <a href="#" onclick="mostrarFuncionNoDisponible('Carrito'); return false;">🛒</a>
+```
+
+2. **Función JavaScript:**
+```javascript
+   function mostrarFuncionNoDisponible(nombreFuncion) {
+       // Muestra alerta temporal con mensaje claro
+   }
+```
+
+3. **Estilo de alerta:**
+   - Posición fija (top-right)
+   - Auto-desaparece después de 4 segundos
+   - Animación de salida suave
+   - Diseño consistente con el proyecto
+
+**Beneficio:** Experiencia de usuario profesional, sin enlaces rotos ni confusión.
+
 
 
 ------------------------------------------------------------------------------------------------------------------------------

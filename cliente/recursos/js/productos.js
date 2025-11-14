@@ -232,32 +232,12 @@ function crearCardProducto(producto) {
         ? `✓ ${producto.stock} disponibles` 
         : '✗ Agotado';
     
-    // Colores alternados para las imágenes placeholder
-    const colores = [
-        'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        'linear-gradient(135deg, #00d9ff 0%, #7b2cbf 100%)',
-        'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-        'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
-    ];
-    const colorIndex = producto.id % colores.length;
-    
     card.innerHTML = `
         <div class="card-imagen">
-            <div style="
-                width: 100%;
-                height: 100%;
-                background: ${colores[colorIndex]};
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: white;
-                font-size: 1.5rem;
-                font-weight: bold;
-                text-align: center;
-                padding: 2rem;
-            ">
-                ${producto.marca}
-            </div>
+            <img src="${producto.url_imagen}" 
+                 alt="${producto.nombre}"
+                 onerror="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.style.color='white'; this.style.fontSize='1.2rem'; this.style.fontWeight='bold'; this.style.padding='2rem'; this.innerHTML='${producto.marca}';"
+                 loading="lazy">
             <span class="card-badge">${producto.categoria}</span>
         </div>
         
@@ -485,6 +465,55 @@ if (document.readyState === 'loading') {
     // El DOM ya está listo
     inicializar();
 }
+
+
+
+
+
+// ========================================
+// FUNCIÓN: MOSTRAR ALERTA DE NO DISPONIBLE
+// ========================================
+
+/**
+ * Muestra un mensaje cuando se intenta acceder a funciones no implementadas
+ */
+function mostrarFuncionNoDisponible(nombreFuncion) {
+    // Crear alerta
+    const alerta = document.createElement('div');
+    alerta.className = 'alerta alerta-info';
+    alerta.style.position = 'fixed';
+    alerta.style.top = '100px';
+    alerta.style.right = '20px';
+    alerta.style.zIndex = '1000';
+    alerta.style.minWidth = '350px';
+    alerta.style.maxWidth = '400px';
+    alerta.style.boxShadow = 'var(--sombra-xl)';
+    
+    alerta.innerHTML = `
+        <div style="display: flex; align-items: start; gap: 12px;">
+            <span style="font-size: 24px;">ℹ️</span>
+            <div>
+                <strong style="display: block; margin-bottom: 8px;">Función no disponible</strong>
+                <p style="margin: 0; font-size: 14px;">
+                    "${nombreFuncion}" no está disponible en este prototipo.<br>
+                    <small style="opacity: 0.8;">Esta es una demostración de carga dinámica con AJAX.</small>
+                </p>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(alerta);
+    
+    // Auto-remover después de 4 segundos
+    setTimeout(() => {
+        alerta.style.opacity = '0';
+        alerta.style.transform = 'translateX(400px)';
+        setTimeout(() => alerta.remove(), 300);
+    }, 4000);
+}
+
+// Exponer función globalmente
+window.mostrarFuncionNoDisponible = mostrarFuncionNoDisponible;
 
 
 
