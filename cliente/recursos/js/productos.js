@@ -474,11 +474,25 @@ if (document.readyState === 'loading') {
 // FUNCIÓN: MOSTRAR ALERTA DE NO DISPONIBLE
 // ========================================
 
+// ========================================
+// FUNCIÓN: MOSTRAR ALERTA DE NO DISPONIBLE
+// ========================================
+
+// Variable global para almacenar la alerta actual
+let alertaActual = null;
+
 /**
  * Muestra un mensaje cuando se intenta acceder a funciones no implementadas
+ * Solo permite una alerta visible a la vez
  */
 function mostrarFuncionNoDisponible(nombreFuncion) {
-    // Crear alerta
+    // Si ya hay una alerta visible, removerla primero
+    if (alertaActual) {
+        alertaActual.remove();
+        alertaActual = null;
+    }
+    
+    // Crear nueva alerta
     const alerta = document.createElement('div');
     alerta.className = 'alerta alerta-info';
     
@@ -498,7 +512,7 @@ function mostrarFuncionNoDisponible(nombreFuncion) {
                 <strong style="display: block; margin-bottom: 8px; font-size: 15px;">Función no disponible</strong>
                 <p style="margin: 0; font-size: 14px; line-height: 1.5;">
                     "${nombreFuncion}" no está disponible en este prototipo.<br>
-                    <small style="opacity: 0.8; font-size: 12px;">Esta es una demostración de carga dinámica con AJAX.</small>
+                    <small style="opacity: 0.8; font-size: 12px;">Demostración de carga dinámica con AJAX.</small>
                 </p>
             </div>
         </div>
@@ -506,13 +520,27 @@ function mostrarFuncionNoDisponible(nombreFuncion) {
     
     document.body.appendChild(alerta);
     
-    // Auto-remover después de 4 segundos
+    // Guardar referencia a la alerta actual
+    alertaActual = alerta;
+    
+    // Auto-remover después de 2.5 segundos (reducido de 4)
     setTimeout(() => {
-        alerta.style.transition = 'all 0.3s ease-out';
-        alerta.style.opacity = '0';
-        alerta.style.transform = 'translateX(400px)';
-        setTimeout(() => alerta.remove(), 300);
-    }, 4000);
+        if (alerta && alerta.parentNode) {
+            alerta.style.transition = 'all 0.3s ease-out';
+            alerta.style.opacity = '0';
+            alerta.style.transform = 'translateX(400px)';
+            
+            setTimeout(() => {
+                if (alerta && alerta.parentNode) {
+                    alerta.remove();
+                }
+                // Limpiar referencia si esta es la alerta actual
+                if (alertaActual === alerta) {
+                    alertaActual = null;
+                }
+            }, 300);
+        }
+    }, 2500); // Reducido de 4000ms a 2500ms
 }
 
 // Exponer función globalmente
