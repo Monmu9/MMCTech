@@ -59,6 +59,13 @@ Se solicita crear un prototipo dinámico que permita cargar productos adicionale
 - Prevención de errores
 - Diseño responsive
 
+✅ **Implementar accesibilidad web completa**  
+- Uso de roles ARIA semánticos
+- Atributos aria-label y aria-labelledby
+- Soporte para lectores de pantalla
+- Navegación por teclado optimizada
+- Cumplimiento de WCAG 2.1
+
 
 ------------------------------------------------------------------------------------------------------------------------------
 
@@ -67,9 +74,10 @@ Se solicita crear un prototipo dinámico que permita cargar productos adicionale
 
 ### Frontend
 
-HTML5       --> Estructura semántica de la aplicación 
-CSS3        --> Estilos, layout responsive y animaciones 
-JavaScript  --> Lógica de la aplicación y AJAX 
+HTML5                    --> Estructura semántica de la aplicación 
+CSS3                     --> Estilos, layout responsive y animaciones 
+JavaScript               --> Lógica de la aplicación y AJAX
+Accesibilidad Aria/Roles --> Atributos ARIA para mejorar accesibilidad 
 
 ### Formato de Datos
 
@@ -720,6 +728,112 @@ loading="lazy"
 └──────────────┘
 ```
 
+---
+
+### ✅ Práctica 8: Accesibilidad Web con ARIA
+
+**Descripción:**  
+Implementación completa de atributos ARIA para mejorar la accesibilidad del sitio web.
+
+**Implementación:**
+
+#### Roles Semánticos:
+```html
+<header role="banner">           <!-- Encabezado principal -->
+<main role="main">               <!-- Contenido principal -->
+<nav aria-label="...">           <!-- Navegación -->
+<footer role="contentinfo">      <!-- Información del sitio -->
+<section aria-labelledby="..."> <!-- Secciones con títulos -->
+```
+
+#### Atributos para Navegación:
+```html
+<!-- Página actual -->
+<a href="index.html" aria-current="page">Inicio</a>
+
+<!-- Enlaces descriptivos -->
+<a href="productos.html" aria-label="Ver catálogo completo de productos gaming">
+
+<!-- Botones de acción -->
+<button aria-label="Cargar más productos">Cargar Más</button>
+```
+
+#### Filtros Interactivos:
+```html
+<!-- Estado de filtros (pressed/not pressed) -->
+<button aria-pressed="true">Todos</button>
+<button aria-pressed="false">Ratones</button>
+
+<!-- Menú móvil expandible -->
+<button aria-expanded="false" aria-controls="navLinks">☰</button>
+```
+
+#### Contenido Dinámico:
+```html
+<!-- Anuncios suaves de cambios -->
+<div aria-live="polite" role="status">
+    Mostrando 12 de 20 productos
+</div>
+
+<!-- Alertas importantes -->
+<div role="alert" aria-live="assertive">
+    Error al cargar productos
+</div>
+```
+
+#### Elementos Decorativos:
+```html
+<!-- Ocultar emojis de lectores de pantalla -->
+<span aria-hidden="true">🛒</span>
+<span aria-hidden="true">€</span>
+```
+
+#### Cards de Productos:
+```javascript
+// Productos dinámicos con información completa
+card.setAttribute('aria-label', `${producto.nombre} - ${producto.precio} euros`);
+
+// Imágenes descriptivas
+alt="Imagen de Logitech G502 HERO"
+
+// Botones con contexto
+aria-label="Añadir Logitech G502 HERO al carrito"
+```
+
+**Código JavaScript para ARIA Dinámico:**
+```javascript
+// Actualizar aria-pressed en filtros
+function filtrarPorCategoria(categoria) {
+    filtrosBotones.forEach(btn => {
+        if (btn.dataset.categoria === categoria) {
+            btn.setAttribute('aria-pressed', 'true');
+        } else {
+            btn.setAttribute('aria-pressed', 'false');
+        }
+    });
+}
+
+// Actualizar aria-expanded en menú móvil
+menuToggle.addEventListener('click', function() {
+    const isExpanded = navLinks.classList.toggle('activo');
+    menuToggle.setAttribute('aria-expanded', isExpanded);
+});
+```
+
+**Beneficios:**
+- ♿ **Accesible para todos:** Personas con discapacidades visuales pueden navegar con lectores de pantalla
+- ⌨️ **Navegación por teclado:** Todo es accesible sin mouse
+- 📢 **Feedback auditivo:** Anuncios claros de cambios en la página
+- 🎯 **Mejor SEO:** Los motores de búsqueda entienden mejor la estructura
+- ✅ **Cumplimiento legal:** Cumple con WCAG 2.1 (Web Content Accessibility Guidelines)
+- 🏆 **Código profesional:** Demuestra conocimiento de estándares web modernos
+
+**Validación:**
+- ✅ HTML validado con W3C Validator (0 errores)
+- ✅ Navegación por teclado funcional
+- ✅ Compatible con lectores de pantalla (NVDA, VoiceOver)
+
+
 
 ------------------------------------------------------------------------------------------------------------------------------
 
@@ -1071,6 +1185,9 @@ Durante el desarrollo del proyecto se han aplicado conocimientos de:
 - **HTML5**: Etiquetas semánticas, accesibilidad
 - **JSON**: Estructura de datos, parsing
 - **Buenas prácticas**: Código limpio, comentarios, organización modular
+- **Accesibilidad Web**: ARIA roles, labels, live regions, navegación por teclado
+- **Validación HTML**: Uso de W3C Validator, corrección de errores semánticos
+- **Estándares Web**: WCAG 2.1, mejores prácticas de accesibilidad
 
 ### 12.3 Aplicabilidad Real
 
@@ -1134,6 +1251,21 @@ Aunque no voy a negar que, al ser novata, me ha dado algún que otro dolor de ca
 - **JSON Formatter** - Validación de JSON
 
 
+### Accesibilidad y ARIA
+
+- **WAI-ARIA Overview**  
+  https://www.w3.org/WAI/standards-guidelines/aria/
+
+- **WCAG 2.1 Guidelines**  
+  https://www.w3.org/WAI/WCAG21/quickref/
+
+- **W3C Markup Validation Service**  
+  https://validator.w3.org/
+
+- **MDN - ARIA**  
+  https://developer.mozilla.org/es/docs/Web/Accessibility/ARIA
+
+  
 ------------------------------------------------------------------------------------------------------------------------------
 
 

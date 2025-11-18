@@ -31,6 +31,7 @@ Tienda online de periféricos gaming que implementa:
 - 🎯 JavaScript moderno (ES6+, async/await, Fetch API)
 - 💫 Animaciones suaves y feedback visual
 - 🔔 Alertas informativas para funciones no implementadas
+- ♿ **Accesibilidad completa** con ARIA labels y roles (WCAG 2.1)
 
 
 -------------------------------------------------------------------------------------------------------------
@@ -191,6 +192,19 @@ function crearCardProducto(producto) { }
 async function handleCargarMas() { }
 ```
 
+### Accesibilidad (ARIA)
+```html
+role="banner", role="main", role="contentinfo"
+aria-label, aria-labelledby, aria-current
+aria-pressed (filtros), aria-expanded (menú)
+aria-live="polite" (contenido dinámico)
+aria-hidden="true" (decoraciones)
+```
+- Navegación por teclado optimizada
+- Lectores de pantalla compatibles
+- Cumple con WCAG 2.1
+- Validado con W3C Validator
+
 ### Responsive Design
 ```css
 Desktop (>768px)  → 3 columnas
@@ -215,6 +229,8 @@ Móvil (<480px)    → 1 columna
 ✅ Trabajar con datos en formato JSON  
 ✅ Aplicar buenas prácticas de usabilidad  
 ✅ Diseño responsive y accesible  
+✅ Implementar accesibilidad web con ARIA 
+✅ Validación HTML sin errores (W3C)
 
 ### Situación Profesional Simulada
 
