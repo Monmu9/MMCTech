@@ -225,41 +225,46 @@ function renderizarProductos(productos) {
 function crearCardProducto(producto) {
     const card = document.createElement('article');
     card.className = 'card';
+    card.setAttribute('aria-label', `${producto.nombre} - ${producto.precio} euros`);
     
     // Determinar estado de stock
     const stockClass = producto.stock > 0 ? 'disponible' : 'agotado';
     const stockTexto = producto.stock > 0 
         ? `✓ ${producto.stock} disponibles` 
         : '✗ Agotado';
+    const stockAriaLabel = producto.stock > 0
+        ? `${producto.stock} unidades disponibles`
+        : 'Producto agotado';
     
     card.innerHTML = `
         <div class="card-imagen">
             <img src="${producto.url_imagen}" 
-                 alt="${producto.nombre}"
+                 alt="Imagen de ${producto.nombre}"
                  onerror="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.style.color='white'; this.style.fontSize='1.2rem'; this.style.fontWeight='bold'; this.style.padding='2rem'; this.innerHTML='${producto.marca}';"
                  loading="lazy">
-            <span class="card-badge">${producto.categoria}</span>
+            <span class="card-badge" aria-label="Categoría: ${producto.categoria}">${producto.categoria}</span>
         </div>
         
         <div class="card-contenido">
-            <div class="card-marca">${producto.marca}</div>
+            <div class="card-marca" aria-label="Marca: ${producto.marca}">${producto.marca}</div>
             <h3 class="card-titulo">${producto.nombre}</h3>
             <p class="card-descripcion">${producto.descripcion}</p>
             
             <div class="card-footer">
                 <div>
-                    <div class="card-precio">
-                        <span class="card-precio-simbolo">€</span>${producto.precio.toFixed(2)}
+                    <div class="card-precio" aria-label="Precio: ${producto.precio} euros">
+                        <span class="card-precio-simbolo" aria-hidden="true">€</span>${producto.precio.toFixed(2)}
                     </div>
-                    <div class="card-stock ${stockClass}">
+                    <div class="card-stock ${stockClass}" aria-label="${stockAriaLabel}">
                         ${stockTexto}
                     </div>
                 </div>
                 
                 <button class="btn btn-primario btn-sm" 
                         onclick="agregarAlCarrito(${producto.id})"
-                        ${producto.stock === 0 ? 'disabled' : ''}>
-                    🛒 Añadir
+                        aria-label="Añadir ${producto.nombre} al carrito"
+                        ${producto.stock === 0 ? 'disabled aria-disabled="true"' : ''}>
+                    <span aria-hidden="true">🛒</span> Añadir
                 </button>
             </div>
         </div>
@@ -344,8 +349,10 @@ function filtrarPorCategoria(categoria) {
     filtrosBotones.forEach(btn => {
         if (btn.dataset.categoria === categoria) {
             btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
         } else {
             btn.classList.remove('active');
+            btn.setAttribute('aria-pressed', 'false');
         }
     });
     
