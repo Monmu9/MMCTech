@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Catálogo de productos gaming de MMCtech - Periféricos de alta calidad">
+    <meta name="author" content="Montse - 2º DAW">
+    <meta name="robots" content="index, follow">
     <title>Productos - MMCtech | Tienda Gaming</title>
     
 
@@ -29,10 +31,10 @@
         <!-- ========================================
              HEADER
              ======================================== -->
-        <header class="header">
+        <header class="header" role="banner">
             <div class="container header-container">
                 <!-- Logo -->
-                <a href="../../index.html" class="logo">
+                <a href="../../index.html" class="logo" aria-label="MMCtech - Volver al inicio">
                     <img src="../recursos/imagenes/productos/logo/logo.png" 
                         alt="MMCtech Logo" 
                         class="logo-imagen" 
@@ -42,28 +44,38 @@
                 </a>
                 
                 <!-- Navegación -->
-                <nav class="nav-principal">
+                <nav class="nav-principal" aria-label="Navegación principal">
                     <ul class="nav-links" id="navLinks">
                         <li><a href="../../index.html" class="nav-link">Inicio</a></li>
-                        <li><a href="productos.html" class="nav-link active">Productos</a></li>
+                        <li><a href="productos.html" class="nav-link active" aria-current="page">Productos</a></li>
                     </ul>
                 </nav>
                 
                 <!-- Acciones del header -->
                 <div class="header-acciones">
                     <!-- Carrito -->
-                    <a href="#" class="header-icono" title="Carrito" onclick="mostrarFuncionNoDisponible('Carrito'); return false;">
+                    <a href="#" class="header-icono" 
+                    title="Carrito" 
+                    aria-label="Carrito de compra - Función no disponible"
+                    onclick="mostrarFuncionNoDisponible('Carrito'); return false;">
                         <span>🛒</span>
-                        <span class="badge" id="carritoContador">0</span>
+                        <span class="badge" id="carritoContador" aria-label="0 productos en el carrito">0</span>
                     </a>
                 
                     <!-- Usuario -->
-                    <a href="#" class="header-icono" title="Mi cuenta" onclick="mostrarFuncionNoDisponible('Mi Cuenta'); return false;">
-                        <span>👤</span>
+                    <a href="#" class="header-icono" 
+                    title="Mi cuenta"
+                    aria-label="Mi cuenta - Función no disponible" 
+                    onclick="mostrarFuncionNoDisponible('Mi Cuenta'); return false;">
+                        <span aria-hidden="true">👤</span>
                     </a>
                 
                     <!-- Menú móvil -->
-                    <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                    <button class="menu-toggle" 
+                    id="menuToggle" 
+                    aria-label="Abrir menú de navegación"
+                    aria-expanded="false"
+                    aria-controls="navLinks">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -78,15 +90,15 @@
         <!-- ========================================
              CONTENIDO PRINCIPAL
              ======================================== -->
-        <main class="main-content">
+        <main class="main-content" role="main">
             
             <!-- Sección de productos -->
-            <section class="seccion">
+            <section class="seccion" aria-labelledby="titulo-catalogo">
                 <div class="container">
                     
                     <!-- Header de la sección -->
                     <div class="seccion-header">
-                        <h1 class="seccion-titulo">Catálogo de Productos</h1>
+                        <h1 id="titulo-catalogo" class="seccion-titulo">Catálogo de Productos</h1>
                         <p class="seccion-subtitulo">
                             Descubre nuestra selección de periféricos gaming de alta calidad
                         </p>
@@ -94,43 +106,63 @@
                     
                     <!-- Filtros -->
                     <div class="filtros-container mb-4">
-                        <div class="filtros">
-                            <button class="btn btn-outline filtro-btn active" data-categoria="todos">
+                        <nav class="filtros" aria-label="Filtros de categoría">
+                            <button class="btn btn-outline filtro-btn active" 
+                            data-categoria="todos"
+                            aria-label="Mostrar todos los productos"
+                            aria-pressed="true">
                                 Todos
                             </button>
-                            <button class="btn btn-outline filtro-btn" data-categoria="Ratones">
-                                🖱️ Ratones
+                            <button class="btn btn-outline filtro-btn" data-categoria="Ratones" aria-label="Filtrar por ratones gaming"
+                                aria-pressed="false">
+                                <span aria-hidden="true">🖱️</span> Ratones
                             </button>
-                            <button class="btn btn-outline filtro-btn" data-categoria="Teclados">
-                                ⌨️ Teclados
+                            <button class="btn btn-outline filtro-btn" data-categoria="Teclados" aria-label="Filtrar por teclados gaming"
+                                aria-pressed="false">
+                                <span aria-hidden="true">⌨️</span> Teclados
                             </button>
-                            <button class="btn btn-outline filtro-btn" data-categoria="Auriculares">
-                                🎧 Auriculares
+                            <button class="btn btn-outline filtro-btn" data-categoria="Auriculares" aria-label="Filtrar por auriculares gaming"
+                                aria-pressed="false">
+                                <span aria-hidden="true">🎧</span> Auriculares
                             </button>
-                            <button class="btn btn-outline filtro-btn" data-categoria="Monitores">
-                                🖥️ Monitores
+                            <button class="btn btn-outline filtro-btn" data-categoria="Monitores" aria-label="Filtrar por monitores gaming"
+                                aria-pressed="false">
+                                <span aria-hidden="true">🖥️</span> Monitores
                             </button>
-                        </div>
+                        </nav>
                     </div>
                     
 
                     <!-- Contador de productos -->
                     <div class="productos-info mb-3">
-                        <p id="productosInfo" style="color: var(--color-texto-secundario);">
+                        <p id="productosInfo" 
+                            role="status" 
+                            aria-live="polite" 
+                            style="color: var(--color-texto-secundario);">
                             Mostrando <span id="productosActuales">0</span> de <span id="productosTotal">0</span> productos
                         </p>
                     </div>
                     
 
                     <!-- Grid de productos -->
-                    <div class="productos-grid" id="productosGrid">
+                    <div class="productos-grid" 
+                        id="productosGrid"
+                        role="region"
+                        aria-label="Lista de productos"
+                        aria-live="polite">
                         <!-- Los productos se cargarán dinámicamente aquí -->
                     </div>
                     
 
                     <!-- Mensaje de carga -->
-                    <div id="loadingProductos" class="text-center oculto" style="padding: var(--espacio-2xl);">
-                        <div class="spinner" style="width: 40px; height: 40px; border-width: 4px; margin: 0 auto;"></div>
+                    <div id="loadingProductos" 
+                        class="text-center oculto"
+                        role="status"
+                        style="padding: var(--espacio-2xl);">
+
+                    <div class="spinner" 
+                        aria-hidden="true"
+                        style="width: 40px; height: 40px; border-width: 4px; margin: 0 auto;"></div>
                         <p style="color: var(--color-texto-secundario); margin-top: var(--espacio-md);">
                             Cargando productos...
                         </p>
@@ -138,7 +170,11 @@
                     
 
                     <!-- Mensaje cuando no hay más productos -->
-                    <div id="noMasProductos" class="text-center oculto" style="padding: var(--espacio-xl);">
+                    <div id="noMasProductos" 
+                    class="text-center oculto" 
+                    role="status"
+                    aria-live="polite"
+                    style="padding: var(--espacio-xl);">
                         <p style="color: var(--color-texto-secundario); font-size: var(--texto-lg);">
                             ✅ Has visto todos los productos disponibles
                         </p>
@@ -147,8 +183,10 @@
 
                     <!-- Botón "Cargar más" -->
                     <div class="text-center mt-4">
-                        <button id="btnCargarMas" class="btn btn-primario btn-lg">
-                            <span>📦</span>
+                        <button id="btnCargarMas" 
+                                class="btn btn-primario btn-lg"
+                                aria-label="Cargar más productos">
+                            <span aria-hidden="true">📦</span>
                             <span>Cargar Más Productos</span>
                         </button>
                     </div>
@@ -163,7 +201,7 @@
         <!-- ========================================
              FOOTER
              ======================================== -->
-        <footer class="footer">
+        <footer class="footer" role="contentinfo">
             <div class="container">
                 <div class="footer-container">
                     
@@ -180,37 +218,51 @@
                     <!-- Enlaces rápidos -->
                     <div class="footer-seccion">
                         <h3>Enlaces Rápidos</h3>
-                        <ul class="footer-links">
-                            <li><a href="../index.html" class="footer-link">Inicio</a></li>
-                            <li><a href="productos.html" class="footer-link">Productos</a></li>
-                            <li><a href="#" class="footer-link">Ofertas</a></li>
-                            <li><a href="#" class="footer-link">Blog</a></li>
-                            <li><a href="#" class="footer-link">Contacto</a></li>
-                        </ul>
+                        <nav aria-label="Enlaces rápidos del sitio">
+                            <ul class="footer-links">
+                                <li><a href="../index.html" class="footer-link">Inicio</a></li>
+                                <li><a href="productos.html" class="footer-link">Productos</a></li>
+                                <li><a href="#" class="footer-link">Ofertas</a></li>
+                                <li><a href="#" class="footer-link">Blog</a></li>
+                                <li><a href="#" class="footer-link">Contacto</a></li>
+                             </ul>
+                        </nav>
                     </div>
 
                     
                     <!-- Categorías -->
                     <div class="footer-seccion">
                         <h3>Categorías</h3>
-                        <ul class="footer-links">
-                            <li><a href="#" class="footer-link">Ratones Gaming</a></li>
-                            <li><a href="#" class="footer-link">Teclados Mecánicos</a></li>
-                            <li><a href="#" class="footer-link">Auriculares</a></li>
-                            <li><a href="#" class="footer-link">Monitores</a></li>
-                            <li><a href="#" class="footer-link">Accesorios</a></li>
-                        </ul>
+                        <nav aria-label="Categorías de productos">
+                            <ul class="footer-links">
+                                <li><a href="#" class="footer-link">Ratones Gaming</a></li>
+                                <li><a href="#" class="footer-link">Teclados Mecánicos</a></li>
+                                <li><a href="#" class="footer-link">Auriculares</a></li>
+                                <li><a href="#" class="footer-link">Monitores</a></li>
+                                <li><a href="#" class="footer-link">Accesorios</a></li>
+                            </ul>
+                        </nav>
                     </div>
                     
 
                     <!-- Contacto -->
                     <div class="footer-seccion">
                         <h3>Contacto</h3>
-                        <ul class="footer-links">
-                            <li style="color: var(--color-texto-secundario);">📧 info@mmctech.com</li>
-                            <li style="color: var(--color-texto-secundario);">📞 +34 900 123 456</li>
-                            <li style="color: var(--color-texto-secundario);">📍 En un lugar de La Mancha, España</li>
-                        </ul>
+                        <address style="font-style: normal;">
+                            <ul class="footer-links">
+                                <li style="color: var(--color-texto-secundario);">
+                                    <span aria-hidden="true">📧</span>
+                                    <a href="mailto:info@mmctech.com" style="color: var(--color-texto-secundario);">info@mmctech.com</a>
+                                </li>
+                                <li style="color: var(--color-texto-secundario);">
+                                    <span aria-hidden="true">📞</span>
+                                    <a href="tel:+34900123456" style="color: var(--color-texto-secundario);">+34 900 123 456</a>
+                                </li>
+                                <li style="color: var(--color-texto-secundario);">
+                                    <span aria-hidden="true">📍</span> En un lugar de La Mancha, España
+                                </li>
+                            </ul>
+                        </address>
                     </div>
                     
                 </div>
@@ -218,8 +270,10 @@
                 
                 <!-- Copyright -->
                 <div class="footer-bottom">
-                    <p>&copy; 2025 MMCtech. Todos los derechos reservados. | 
-                       Proyecto educativo - 2º DAW - Entorno Cliente</p>
+                    <p>
+                        <span aria-label="Copyright 2025 MMCtech">&copy; 2025 MMCtech</span>. Todos los derechos reservados. | 
+                       Proyecto educativo - 2º DAW - Entorno Cliente
+                    </p>
                 </div>
             </div>
         </footer>
@@ -244,8 +298,13 @@
     <!-- Script para el menú móvil -->
     <script>
         // Toggle menú móvil
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            document.getElementById('navLinks').classList.toggle('activo');
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', function () {
+            const isExpanded = navLinks.classList.toggle('activo');
+            // Actualizar aria-expanded
+            menuToggle.setAttribute('aria-expanded', isExpanded);
         });
     </script>
 </body>
