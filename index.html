@@ -6,8 +6,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="MMCtech - Tienda online de periféricos gaming de alta calidad">
+    <meta name="keywords" content="gaming, periféricos, ratones gaming, teclados mecánicos, auriculares gaming, monitores gaming">
+    <meta name="author" content="Tu Nombre - 2º DAW">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:title" content="MMCtech - Tienda Gaming">
+    <meta property="og:description" content="Tienda online de periféricos gaming con carga dinámica mediante AJAX">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://monmu9.github.io/MMCTech/">
+
     <title>MMCtech - Tienda Gaming</title>
 
+    
     
     <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,9 +45,9 @@
 
 
         <!-- Header -->
-        <header class="header">
+        <header class="header" role="banner">
             <div class="container header-container">
-                <a href="index.html" class="logo">
+                <a href="index.html" class="logo" aria-label="MMCtech - Inicio">
                     <img src="cliente/recursos/imagenes/productos/logo/logo.png"
                     alt="MMCtech logo"
                     class="logo-imagen"
@@ -45,16 +56,16 @@
                 <span>MMCtech</span>
                 </a>
 
-                <nav class="nav-principal">
+                <nav class="nav-principal" aria-label="Navegación principal">
                     <ul class="nav-links">
-                        <li><a href="index.html" class="nav-link active">Inicio</a></li>
+                        <li><a href="index.html" class="nav-link active" aria-current="page">Inicio</a></li>
                         <li><a href="cliente/paginas/productos.html" class="nav-link">Productos</a></li>
                     </ul>
                 </nav>
 
                 <!-- Acciones -->
                 <div class="header-acciones">
-                    <span style="color: var(--color-texto-secundario); font-size: var(--texto-sm);">
+                    <span style="color: var(--color-texto-secundario); font-size: var(--texto-sm);" aria label="Información del proyecto">
                         Proyecto DAW - Entorno Cliente
                     </span>
                 </div>
@@ -64,11 +75,11 @@
 
 
         <!-- Contenido Principal -->
-        <main class="main-content">
+        <main class="main-content" role="main">
 
 
             <!-- Hero Section -->
-            <section class="hero">
+            <section class="hero" aria-labelledby="titulo-principal">
                 <div class="hero-contenido">
                     <h1 class="hero-titulo">MMCtech - Tienda Gaming</h1>
                     <p class="hero-subtitulo">
@@ -77,8 +88,10 @@
                     </p>
 
                     <div class="hero-cta">
-                        <a href="cliente/paginas/productos.html" class="btn btn-primario btn-lg">
-                            <span>🛍️</span>
+                        <a href="cliente/paginas/productos.html" 
+                        class="btn btn-primario btn-lg"
+                        aria-label="Ver catálogo completo de productos gaming">
+                            <span aria-hidden="true">🛍️</span>
                             <span>Ver Catálogo de Productos</span>
                         </a>
                     </div>
@@ -86,25 +99,25 @@
 
 
                     <!-- Características del Proyecto -->
-                    <div class="caracteristicas">
-                        <div class="caracteristica fade-in">
-                            <div class="caracteristica-icono">⚡</div>
+                    <div class="caracteristicas" role="list" aria-label="Características principales del proyecto">
+                        <div class="caracteristica fade-in" role="listitem">
+                            <div class="caracteristica-icono" aria-hidden="true">⚡</div>
                             <h3 class="caracteristica-titulo">Carga Dinámica</h3>
                             <p class="caracteristica-descripcion">
                                 Los productos se cargan sin recargar la página usando AJAX
                             </p>
                         </div>
 
-                        <div class="caracteristica fade-in-delay">
-                            <div class="caracteristica-icono">📦</div>
+                        <div class="caracteristica fade-in-delay" role="listitem">
+                            <div class="caracteristica-icono" aria-hidden="true">📦</div>
                             <h3 class="caracteristica-titulo">Paginación</h3>
                             <p class="caracteristica-descripcion">
                                 Sistema de "Cargar más" que muestra productos progresivamente
                             </p>
                         </div>
 
-                        <div class="caracteristica fade-in-delay">
-                            <div class="caracteristica-icono">🎨</div>
+                        <div class="caracteristica fade-in-delay" role="listitem">
+                            <div class="caracteristica-icono" aria-hidden="true">🎨</div>
                             <h3 class="caracteristica-titulo">Diseño Profesional</h3>
                             <p class="caracteristica-descripcion">
                                 HTML semántico, CSS moderno y JavaScript estructurado
@@ -120,11 +133,11 @@
 
 
         <!-- Footer -->
-        <footer class="footer">
+        <footer class="footer" role="contentinfo">
             <div class="container">
                 <div class="footer-bottom">
                     <p>
-                        &copy; 2025 MMCtech - Proyecto Educativo |
+                        <span aria-label="Copyright 2025 MMCtech">&copy; 2025 MMCtech</span> - Proyecto Educativo |
                         2º Desarrollo de Aplicaciones Web |
                         Asignatura: Entorno Cliente
                     </p>
