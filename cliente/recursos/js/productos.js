@@ -578,3 +578,152 @@ console.log(`
 ║ consola: cambiarModoDeOrigen()        ║
 ╚════════════════════════════════════════╝
 `);
+
+
+
+/* Respuesta a las 2 preguntas formuladas (también mencionado en el archivo memoria.md
+
+ANÁLISIS DE INTEGRACIÓN: explica brevemente cómo cambiaría este prototipo para integrarse en una aplicación real con base de datos (Backend):
+
+Actualmente este proyecto utiliza datos simulados de un archivo JSON local:
+- Archivo: ../recursos/datos/productos-simulados.json
+- Son 20 productos en total
+- Por lo tanto, no hay persistencia de datos ni hay operaciones CRUD de BBDD.
+
+
+Para conectar este prototipo con una base de datos real, necesitaríamos:
+
+- Base de Datos:
+    - Crear la base de datos relacional
+    - Diseñar esquema de tablas (productos, categorías, marcas" y añadirle a cada uno su id, nombre, descripción, precio, stock, marca, ...). Además, tendríamos que establecer relaciones con "foreign keys"
+
+- API REST (Node.js + Express):
+    - Endpoint: GET /api/productos?limite=6&offset=0&categoria=Ratones
+    - Endpoint: GET /api/productos/:id
+    - Endpoint: POST /api/productos (admin)
+    - Endpoint: PUT /api/productos/:id (admin)  
+    - Endpoint: DELETE /api/productos/:id (admin)
+
+- Servidor Back-end
+
+- Front-end (este archivo de productos.js)
+    - Habría que realizar un cambio en la URL del Fecth:
+const response = await fetch(`${CONFIG.API_URL}/productos?limite=${CONFIG.PRODUCTOS_POR_PAGINA}&offset=${productosActuales}&categoria=${categoriaActual}`);
+
+- Actualizar config.js:
+    const CONFIG = {
+        API_URL: 'https://api.mmctech.com/api',  // URL del backend
+        PRODUCTOS_POR_PAGINA: 6,
+        TIMEOUT: 5000
+    };
+
+- Mejorar el manejo de errores
+
+- Seguridad:
+    - Implementar autenticación (JWT tokens)
+    - Validación de datos en backend
+    - Protección contra SQL Injection (usar prepared statements)
+    - CORS configurado correctamente
+    - HTTPS en producción
+
+- Optimizaciones: 
+    - Caché de productos en localStorage 
+    - Lazy loading de imágenes
+    - Compresión de imágenes (WebP)
+    - CDN para recursos estáticos
+    - Índices en base de datos para búsquedas rápidas
+
+En resumen, este prototipo es fácilmente escalable a producción con cambios mínimos.
+
+
+---------------------------------------------------------------------------------------------------------- 
+
+
+ANÁLISIS DE USABILIDAD: señala dos buenas prácticas de usabilidad que has aplicado o que aplicarías (ej. feedback al usuario) en este prototipo.
+
+
+En este proyecto se han implementado múltiples buenas prácticas de usabilidad para mejorar la experiencia del usuario.
+Destaco 2 como solicitado:
+
+1. FEEDBACK VISUAL CONSTANTE AL USUARIO
+Puesto que el usuario siempre debe saber qué está apsando en la aplicación, he implementado en este proyecto:
+
+- Spinner de carga durante:
+    - Carga inicial de productos
+    - Cuando se hace click en "Cargar más"
+
+- Contador en tiempo real:
+    - "Mostrando 12 de 20 productos"
+    - Se actualiza dinámicamente con cada carga
+
+- Animaciones suaves:
+    - Los productos aparecen con fade-in y no bruscamente
+    - Delay escalonado: cada poducto aparece 50ms después del anterior
+
+- Mensaje de finalización:
+    - Cuando no hay más productos aparece: "Has visto todos los productos disponibles"
+    - El botón "Cargar más" se oculta (y no queda como botón inútil)
+
+- Estado deshabilitado del botón:
+    - El botón "Cargar más" se deshabilita durante la carga
+    - Previene clicks múltiples accidentales
+    - De esta manera evita peticiones duplicadas
+
+- Alertas informativas:
+    - Para funciones que no están implementadas, como "Carrito" o "Mi cuenta"
+    - Aparecen temporalmente (2.5s) y desaparecen con animación
+    - Evita que se solapen, mostrando solo una alerta visible a la vez
+
+Todo esto reduce la ansiedad del usuario y mejora la percepción de velocidad, evitando confusinoes y errores.
+Además muestra una experiencia profesional y pulida.
+
+
+
+2. PREVENCIÓN DE ERRORES Y ESTADOS CLAROS
+
+Puesto que es mejor prevenir errores que tener que corregirlos, he implementado en este proyecto:
+
+- Botones deshabilitados durante acciones:
+    - Los ya mencionados anteriormente como en "Cargar más", que se deshabilita mientras carga y previene de otros clicks accidentales o duplicidades al servidor.
+
+- Productos agotados no añadibles:
+    - El botón "Añadir al carrito" se deshabilita si el stock = 0
+    - Visual claro: el botón se ve deshabilitado, en gris
+
+- Filtros con estado visual:
+    - El filtro activo tiene clase 'active' (destacado visualmente)
+    - aria-pressed="true" para lectores de pantalla
+    - Solo un filtro puede estar activo a la vez
+
+- Indicados de Stock claros:
+    - "✓ 25 disponibles" en verde
+    - "✗ Agotado" en rojo
+    - Decisión visual inmediata
+
+- Validación de datos:
+    - Verificación de respuesta OK del fetch
+    - Manejo de errores con try-catch
+    - Mensajes de error amigables (no técnicos)
+
+- Límites claros:
+    - El sistema sabe cuando no hay más productos
+    - Oculta el botón "Cargar más" cuando no es necesario
+    - Muestra mensaje de finalización
+   
+
+Todo esto evita frustraciones al usuario y reduce errores/comportamientos inesperados.
+La interfaz es más intuitiva y predecible, lo que además ayude a que requiera menos soporte técnico necesario
+   
+Aunque solo se solicita 2 buenas practicas, menciono otras a grosso modo y sin entrar en detalle:
+    - Diseño responsive: grid adaptable, imágenes con lazy loading, botones con área táctil mínima de 44x44px
+    - Accesibilidad (ARIA): roles semánticos, aria-label en todos los elementos interactivos, aria-live para anunciar cambios dinámicos y navegación por teclado funcional
+    - Performance: carga progresiva con solo 6 productos iniciales, fallback de imágenes con gradientes CSS.
+    - Consistencia visual: variables CSS para colores, espaciados, tipografías... misma estructura de cards en todos los productos y animacinoes uniformes
+
+En resumen, este proyecto no solo muestra conocimientos técnicos de AJAX, JavaScript, sino también comprensión profunda de UX/UI y las necesidades del usuario final.
+La combinación de feedback constante y prevención de errores crea una experiencia fluida, profesional y agradable.
+
+
+Gracias, Alejandro, por compartir tus conocimientos en tus clases de tan buena manera.
+   
+*/
